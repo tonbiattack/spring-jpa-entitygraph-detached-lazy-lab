@@ -74,6 +74,10 @@ mvn --batch-mode clean test
 
 `EntityGraphInitializationObservationTest#detailedEntityGraphInitializesLines_butRegularFindByIdDoesNot`は、通常取得とEntityGraph取得の初期化状態を同じH2状態で比較します。これはN+1の一般的な性能測定ではなく、詳細表示用の取得方法を選ぶ根拠を実行可能な形で残す最小観測です。
 
+## 再現手順
+
+修正済み状態は、リポジトリ直下で`mvn --batch-mode clean test`を実行します。バグ状態の確認には`8c70370`へ一時的に切り替え、`mvn --batch-mode test -Dtest=ReceiptViewServiceTest`を実行します。確認後は`git switch main`で修正済み状態へ戻してください。未コミット変更のある作業ツリーで切替を行わないでください。
+
 ## スコープと注意点
 
 このラボは、トランザクション後の詳細DTO変換に必要な一つの関連だけをフェッチします。すべての関連を常にEAGERにする指針ではありません。一覧画面、複数階層の詳細画面、ページング、JSONシリアライズ、N+1の最適化では、別の入出力契約とフェッチ計画を設計してください。
