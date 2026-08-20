@@ -34,7 +34,7 @@
 | 直接観測 | 通常取得と`@EntityGraph`取得について、トランザクション内で`Hibernate.isInitialized(lines)`を比較し、後者だけが初期化済みであることを確認する。 |
 | 決定性 | H2インメモリDB、固定文字列、Springの`TransactionTemplate`を使う。時刻、乱数、ネットワーク、外部I/Oは使わない。 |
 | 固定状態の検証コマンド | `mvn --batch-mode clean test` |
-| バグ状態の確認コマンド | バグコミット確定後、`git checkout <bug-commit>`で`mvn --batch-mode test -Dtest=ReceiptViewServiceTest`を実行する。 |
+| バグ状態の確認コマンド | `git checkout 8c70370`で`mvn --batch-mode test -Dtest=ReceiptViewServiceTest`を実行する。 |
 
 ## 仮説
 
