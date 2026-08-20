@@ -22,7 +22,7 @@ class EntityGraphInitializationObservationTest {
     @Test
     void detailedEntityGraphInitializesLines_butRegularFindByIdDoesNot() {
         Long receiptId = transactionTemplate.execute(status -> {
-            Receipt receipt = new Receipt("receipt-001");
+            Receipt receipt = new Receipt("receipt-observation-001");
             receipt.addLine("Green tea");
             return repository.saveAndFlush(receipt).getId();
         });

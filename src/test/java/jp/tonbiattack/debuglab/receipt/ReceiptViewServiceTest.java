@@ -26,7 +26,7 @@ class ReceiptViewServiceTest {
     @Test
     void loadsLineItemsIntoView_afterServiceTransactionHasCompleted() {
         Long receiptId = transactionTemplate.execute(status -> {
-            Receipt receipt = new Receipt("receipt-001");
+            Receipt receipt = new Receipt("receipt-service-001");
             receipt.addLine("Green tea");
             return repository.saveAndFlush(receipt).getId();
         });
@@ -41,7 +41,7 @@ class ReceiptViewServiceTest {
         assertAll(
                 () -> assertEquals(List.of("Green tea"), persistedLineNames,
                         "DBには受領書の明細行が保存されている"),
-                () -> assertEquals(new ReceiptView("receipt-001", List.of("Green tea")),
+                () -> assertEquals(new ReceiptView("receipt-service-001", List.of("Green tea")),
                         assertDoesNotThrow(() -> ReceiptView.from(detachedReceipt),
                                 "サービスのトランザクション完了後でも明細をDTOへ変換できる"),
                         "詳細DTOは見出しと保存済みの明細名を返す")

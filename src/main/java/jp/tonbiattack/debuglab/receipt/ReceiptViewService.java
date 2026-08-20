@@ -14,6 +14,6 @@ public class ReceiptViewService {
 
     @Transactional(readOnly = true)
     public Receipt loadReceiptForView(Long receiptId) {
-        return repository.findById(receiptId).orElseThrow();
+        return repository.findDetailedById(receiptId).orElseThrow();
     }
 }
