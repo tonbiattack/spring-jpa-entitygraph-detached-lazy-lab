@@ -11,5 +11,11 @@ public interface ReceiptRepository extends JpaRepository<Receipt, Long> {
 
     @EntityGraph(attributePaths = "lines")
     @Query("select receipt from Receipt receipt where receipt.id = :id")
+    /**
+     * 受付と明細を同時に取得します。
+     *
+     * <p>{@code lines} は通常 LAZY ですが、EntityGraph によりこの検索中に初期化されます。
+     * そのため、トランザクション終了後にエンティティがデタッチされた状態でも、明細を参照できます。</p>
+     */
     Optional<Receipt> findDetailedById(@Param("id") Long id);
 }
